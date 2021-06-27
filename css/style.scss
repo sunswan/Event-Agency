@@ -1,0 +1,448 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: "Grtsk Tera";
+	src: url(../fonts/Grtsk-Tera-Medium.otf);
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Grtsk Giga";
+	src: url(../fonts/Grtsk-Tera-Bold.otf);
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Grtsk Giga italic";
+	src: url(../fonts/Grtsk-Tera-bold-Italic.otf);
+	font-weight: bold;
+	font-style: italic;
+}
+
+*,
+*:before,
+*:after {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul,
+s ol,
+li {
+	list-style: none;
+}
+
+img {
+	vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: inherit;
+	font-size: inherit;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100vh;
+	background-color: #bebebe;
+}
+
+.wrapper {
+	margin: 0px auto;
+	height: 100%;
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+h1 {
+	font-size: 34px;
+	line-height: 37.4px;
+	margin: 0px 0px 30px 0px;
+}
+
+.header {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	padding: 0px 19px;
+	z-index: 50;
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: transparent;
+		z-index: 2;
+	}
+	&__body {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		height: 80px;
+		align-items: center;
+	}
+	&__logo {
+		position: relative;
+		margin: 0;
+		padding: 0;
+		font-size: 28px;
+		line-height: 30.8px;
+		width: 55%;
+		cursor: pointer;
+		z-index: 10;
+		font-family: "Grtsk Tera";
+		text-transform: uppercase;
+		color: #000000;
+		-webkit-text-stroke: 0.7px #000000;
+	}
+	&__logo::before {
+		content: attr(data-logo);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0%;
+		color: #bebebe;
+		-webkit-text-stroke: 0.7px #000000;
+		z-index: 1;
+		white-space: nowrap;
+		transition: 0.8s;
+		transition-property: all;
+		overflow: hidden;
+	}
+	&__logo:hover:before {
+		width: 100%;
+	}
+	&__language {
+		width: 34px;
+		height: 34px;
+		align-items: center;
+		justify-content: center;
+		display: flex;
+		border: 1px solid rgb(255, 255, 255, 0.12);
+		border-radius: 50%;
+	}
+	&__language img {
+		max-width: 100%;
+		display: block;
+	}
+	&__burger {
+		display: none;
+	}
+	&__list {
+		display: flex;
+		position: relative;
+		z-index: 2;
+	}
+	&__list li {
+		list-style: none;
+		margin: 0px 0px 0px 20px;
+	}
+
+	@media (max-width: 414px) {
+		.header__body {
+			height: 50px;
+		}
+		.header__logo {
+			flex: 0 0 76px;
+			font-size: 20px;
+			line-height: 22px;
+		}
+		.header__burger {
+			display: block;
+			position: relative;
+			width: 22px;
+			height: 10px;
+			padding-top: 5px;
+			position: relative;
+			z-index: 16;
+		}
+	}
+
+	@media (max-width: 375px) {
+		.header__logo {
+			flex: 0 0 70px;
+			font-size: 18px;
+			line-height: 20px;
+		}
+	}
+
+	&__burger:before,
+	&__burger:after {
+		content: "";
+		background-color: #000000;
+		position: absolute;
+		width: 100%;
+		height: 1px;
+		left: 0;
+		transition: all 0.3s ease 0s;
+	}
+	&__burger:before {
+		top: 0;
+	}
+	&__burger:after {
+		bottom: 0;
+	}
+
+	&__burger.active {
+		height: 20px;
+	}
+
+	&__burger.active:before {
+		transform: rotate(45deg);
+		top: 10px;
+	}
+	&__burger.active:after {
+		transform: rotate(-45deg);
+		bottom: 9px;
+	}
+
+	&__menu {
+		position: fixed;
+		text-align: center;
+		top: -100%;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		transition: all 0.3s ease 0s;
+		background-color: #bebebe;
+		padding: 100px 10px 20px 10px;
+	}
+
+	&__menu.active {
+		top: 0;
+		z-index: 15;
+	}
+
+	&__list {
+		display: block;
+	}
+	&__list li {
+		margin: 0px 0px 20px 0px;
+	}
+}
+.link {
+	color: #373737;
+	font-size: 14px;
+	width: 80px;
+	line-height: 19.6px;
+	cursor: pointer;
+	text-decoration: none;
+	font-family: "Grtsk Giga";
+	&:after {
+		display: block;
+		content: "";
+		height: 1px;
+		width: 0%;
+		background-color: #ffffff;
+		transition: width 0.2s ease-in-out;
+	}
+	&:hover:after,
+	:focus:after {
+		width: 100%;
+	}
+	&:hover {
+		font-family: "Grtsk Giga italic";
+		color: #ffffff;
+		transition: color 0.5s;
+	}
+}
+.moove-text-wrapper {
+	height: 130px;
+	width: 180%;
+	position: absolute;
+	top: 43%;
+	z-index: 5;
+	transform: rotate(329deg);
+}
+.moove-text {
+	font-family: "Grtsk Giga";
+	font-size: 52px;
+	line-height: 110%;
+	width: 200%;
+	text-align: center;
+	text-transform: uppercase;
+	opacity: 0.2;
+	color: #bebebe;
+	-webkit-text-stroke: 1px #000000;
+	white-space: nowrap;
+}
+.reverse {
+	transform: rotate(-180deg);
+}
+.moove-text-1 {
+	left: 0;
+	animation-name: moove-left;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 18s;
+	animation-direction: reverse;
+}
+
+@keyframes moove-left {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+.moove-text-2 {
+	right: 0;
+	animation-name: moove-right;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 18s;
+}
+
+@keyframes moove-right {
+	0% {
+		transform: translateX(-50%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
+}
+@media (max-width: 414px) {
+	.info__link {
+		display: none !important;
+	}
+}
+aside {
+	width: 100%;
+	height: 80px;
+}
+.aside-left {
+	position: absolute;
+	display: inline-block;
+	right: 0;
+	left: 0;
+	bottom: 50%;
+	vertical-align: bottom;
+	text-align: center;
+	transform: rotate(-90deg);
+}
+.aside-right {
+	position: absolute;
+	display: inline-block;
+	right: 0;
+	bottom: 50%;
+	vertical-align: bottom;
+	text-align: center;
+	transform: rotate(90deg);
+}
+
+.main {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&__yellow-circle {
+		width: 578px;
+		height: 578px;
+		background-color: #ffcb46;
+		filter: blur(50px);
+		z-index: 10;
+		border-radius: 50%;
+	}
+	&__text {
+		width: 1023px;
+		height: 180px;
+		font-family: "Grtsk Giga";
+		font-size: 82px;
+		line-height: 90px;
+		text-align: center;
+		text-transform: uppercase;
+		position: absolute;
+		z-index: 15;
+	}
+}
+
+footer {
+	bottom: 2px;
+	position: fixed;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	width: 100%;
+	height: 80px;
+}
+
+// .preloader {
+// 	display: flex;
+// 	animation: spin-1 8s linear infinite;
+// 	flex-direction: column;
+// 	justify-content: center;
+// 	align-items: center;
+// 	margin: auto;
+// 	width: 300px;
+// 	height: 300px;
+// 	color: #337ab7;
+// }
+// .preloader,
+// .preloader-ring {
+// 	transform-style: preserve-3d;
+// }
+// .preloader-ring {
+// 	animation: spin-2 4s linear infinite;
+// 	position: relative;
+// 	height: 60px;
+// 	width: 20px;
+// }
+// .preloader-ring:nth-child(even) {
+// 	animation-direction: reverse;
+// }
+// .preloader-sector {
+// 	font-size: 40px;
+// 	line-height: 60px;
+// 	font-family: Consolas, Lucida Console, Menlo, Monaco, monospace;
+// 	font-weight: 600;
+// 	text-align: center;
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	text-transform: uppercase;
+// 	transform: translateZ(160px);
+// }
+// .preloader-sector,
+// .preloader-sector:empty:before {
+// 	display: inline-block;
+// 	width: 100%;
+// 	height: 100%;
+// }
+// .preloader-sector:empty:before {
+// 	background: linear-gradient(transparent 50%, #bfe2ff 50% 55%, transparent 55%);
+// 	content: "";
+// }
+// @keyframes spin-1 {
+// 	from {
+// 		transform: rotateY(0) rotateX(30deg);
+// 	}
+// 	to {
+// 		transform: rotateY(1turn) rotateX(30deg);
+// 	}
+// }

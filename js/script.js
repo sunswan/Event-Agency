@@ -6,6 +6,7 @@ $(document).ready(function () {
 	});
 });
 
+new CircleType(document.getElementById('scroll-text'));
 
 // moving ring
 
@@ -22,4 +23,5 @@ $(document).ready(function () {
 // 		a = a + 12;
 // 	}
 // });
+
 

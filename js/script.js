@@ -6,22 +6,8 @@ $(document).ready(function () {
 	});
 });
 
-new CircleType(document.getElementById('scroll-text'));
-
-// moving ring
-
-// $(".preloader-ring").each(function () {
-// 	let text = $(this).text(),
-// 		textArr = text.split(''),
-// 		a = 0;
-// 	$(this).html('');
-// 	for (let i = 0; i <= 30; i++) {
-// 		if (!textArr[i] || textArr[i] == " ") {
-// 			textArr[i] = "";
-// 		}
-// 		$(this).append('<div class="preloader-sector" style="transform: rotateY(' + a + 'deg) translateZ(160px)">' + textArr[i] + '</div>');
-// 		a = a + 12;
-// 	}
-// });
-
-
+// image rotate on scroll
+let scrollObject = document.getElementById("scrollObject");
+window.addEventListener("scroll", () => {
+    scrollObject.style.animation-duration('15s');
+});

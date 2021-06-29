@@ -1,6 +1,5 @@
 const ui = {
 	btn: document.querySelector('.c-magnetic-btn'),
-	label: document.querySelector('.t-btn-label')
 }
 
 const state = {
@@ -50,21 +49,12 @@ const resize = () => {
 
 const isMagnetic = (x, y) => {
 	const { bounds } = state
-
 	const centerX = bounds.left + (bounds.width / 2)
 	const centerY = bounds.top + (bounds.height / 2)
-
-	// use pythagorean theorem to calculate
-	// cursor distance from center of btn
-	// a^2 + b^2 = c^2
 	const a = Math.abs(centerX - x)
 	const b = Math.abs(centerY - y)
 	const c = Math.sqrt(a * a + b * b)
-
-	// true if cursor distance from center of btn is
-	// equal to btn radius + threshold
 	const isHover = c < (bounds.width / 2) + state.threshold
-
 	if (!state.history && isHover) {
 		ui.btn.classList.add('is-hover')
 		Object.assign(state, {
@@ -78,21 +68,15 @@ const isMagnetic = (x, y) => {
 			history: false
 		})
 	}
-
 	return isHover
 }
 
 const run = () => {
 	requestAnimationFrame(run)
-
 	const { isMagnetic, transform, mouse, width, height, ease, max, scale } = state
-
 	transform.x = isMagnetic ? (mouse.x - width / 2) / width * transform.max : 0
 	transform.y = isMagnetic ? (mouse.y - height / 2) / height * transform.max : 0
 	transform.scale = isMagnetic ? scale : 1
-
-	// basic linear interpolation
-	// https://www.youtube.com/watch?v=yWhgniVHROw
 	ease.x += (transform.x - ease.x) * ease.value
 	ease.y += (transform.y - ease.y) * ease.value
 	ease.scale += (transform.scale - ease.scale) * ease.value
@@ -108,18 +92,6 @@ const run = () => {
 			${(ease.scale).toFixed(2)}
 		 )`
 	})
-
-	// Object.assign(ui.label.style, {
-	// 	transform: `
-	// 	 translate(
-	// 		${(-ease.x / state.ratio).toFixed(2)}px,
-	// 		${(-ease.y / state.ratio).toFixed(2)}px
-	// 	 )
-	// 	 translateZ(0)
-	// 	 scale(
-	// 		${(1 / ease.scale).toFixed(2)}
-	// 	 )`
-	// })
 }
 
 const init = () => {
@@ -127,5 +99,4 @@ const init = () => {
 	window.addEventListener('resize', resize)
 	run()
 }
-
 init()

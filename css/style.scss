@@ -391,7 +391,7 @@ body {
 		height: 578px;
 		background-color: #ffcb46;
 		filter: blur(50px);
-		z-index: 1;
+		// z-index: 1;
 		border-radius: 50%;
 		position: relative;
 		@media (max-width: 1024px) {
@@ -414,7 +414,7 @@ body {
 		text-align: center;
 		text-transform: uppercase;
 		position: absolute;
-		z-index: 1;
+		// z-index: 1;
 		@media (max-width: 1024px) {
 			width: 724px;
 			font-size: 58px;
@@ -439,7 +439,7 @@ body {
 	position: absolute;
 	bottom: 16%;
 	right: 32%;
-	z-index: 1;
+	// z-index: 1;
 	display: flex;
 	justify-content: center;
 	align-items: center;
